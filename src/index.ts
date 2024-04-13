@@ -1,5 +1,6 @@
 /**
  * @description 应用构建信息打印
+ * @TODO: 1、git信息 2、App信息
  */
 
 import fs from 'node:fs'
