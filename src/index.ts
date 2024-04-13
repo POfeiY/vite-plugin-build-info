@@ -3,6 +3,7 @@
  */
 
 import type { IndexHtmlTransformResult, Plugin, UserConfig } from 'vite'
+
 import type { Build_Info_To_Html } from './types'
 import { getAppInfo, getGitInfo } from './utils'
 
