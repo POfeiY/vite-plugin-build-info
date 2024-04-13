@@ -5,7 +5,7 @@ describe('should', () => {
   it('getAppInfo', () => {
     expect(getAppInfo()).toMatchInlineSnapshot(`
       {
-        "buildStamp": "2024/4/13 15:45:10",
+        "buildStamp": "2024/4/13 22:05:54",
         "name": "vite-plugin-build-info-to-html",
         "version": "0.0.1",
       }
@@ -16,8 +16,8 @@ describe('should', () => {
     expect(gitInfo).toMatchInlineSnapshot(`
       {
         "branch": "main",
-        "commitHash": "2cd5585",
-        "describe": "2cd5585",
+        "commitHash": "c7e203b",
+        "describe": "c7e203b",
         "username": "yuzili",
       }
     `)

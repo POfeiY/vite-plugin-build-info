@@ -11,6 +11,7 @@ export default antfu(
     rules: {
       // overrides
       'node/prefer-global/process': ['off'],
+      'ts/consistent-type-definitions': ['off'],
     },
   },
 )
