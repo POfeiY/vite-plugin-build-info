@@ -1,45 +1,68 @@
 /**
- * @description 应用构建信息打印
- * @TODO: 1、git信息 2、App信息
+ * @description 应用构建信息打印（应用字段+git字段）
  */
 
-import fs from 'node:fs'
-import path from 'node:path'
-import type { Plugin, UserConfig } from 'vite'
+import type { IndexHtmlTransformResult, Plugin, UserConfig } from 'vite'
+import { getAppInfo, getGitInfo } from './utils'
+import type { Build_Info_To_Html } from './types'
 
 // 全局信息
 const GlobalConf = `window__APP_CONFIG__`
 
-export default function (options: UserConfig): Plugin {
-  const outputPath = options.build?.outDir ?? 'dist'
+export default function (options: UserConfig & Build_Info_To_Html): Plugin {
   let commandType: 'serve' | 'build'
+  const { showBuildUser = true, enableGloabl = false, enableLog = true, enableMeta = true } = options || {}
   return {
     name: 'vite-plugin-build-info-to-html',
     config: (_, { command }) => {
       commandType = command
     },
-    transformIndexHtml(rawHtmlStr: string) {
+    async transformIndexHtml() {
       if (commandType === 'build') {
-        // 构建时间戳
-        const dateStamp = new Date().toLocaleString()
-        const configurationString = `
-          ${GlobalConf}=${JSON.stringify(options ?? { output: 'dist' })};
-          Object.defineProperty(window, GlobalConf, {
-            configurable: false,
-            writable: false,
-          });
-          console.log('%c 构建时间:', 'color:red');
-          console.log('$c ${dateStamp}', 'color: #1D63F2');
-        `.replace(/\s/g, '')
+        const extraInfos: IndexHtmlTransformResult = []
+        const appInfo = getAppInfo()
+        const mountInfo: Record<string, unknown> = {
+          ...appInfo,
+        }
 
-        fs.writeFileSync(getRootPath(`${outputPath}/__app__config.js`), configurationString)
-        rawHtmlStr.replace(/<\/html>/, `<script src="./__app__config__.js?${dateStamp}"></script>\n</html>`)
-        return rawHtmlStr
+        try {
+          const { commitHash, describe, branch, username } = await getGitInfo()
+          mountInfo.commitHash = commitHash
+          mountInfo.describe = describe
+          mountInfo.branch = branch
+          if (showBuildUser)
+            mountInfo.username = username
+        }
+        catch (error) {
+          console.warn('获取git信息失败', error)
+        }
+
+        const appInfoString = JSON.stringify(mountInfo).replace(/"/g, '\'')
+        // html meta content
+        if (enableMeta) {
+          extraInfos.push({
+            tag: 'meta',
+            injectTo: 'head-prepend',
+            attrs: { name: 'app-info', content: appInfoString },
+          })
+        }
+        // log TODO: format
+        if (enableLog) {
+          extraInfos.push({
+            tag: 'script',
+            injectTo: 'body',
+            children: `console.log(${appInfoString})`,
+          })
+        }
+        if (enableGloabl) {
+          extraInfos.push({
+            tag: 'script',
+            injectTo: 'body',
+            children: `window.${GlobalConf}=${appInfoString}`,
+          })
+        }
+        return extraInfos
       }
     },
   }
-}
-
-function getRootPath(...dir: string[]) {
-  return path.resolve(process.cwd(), ...dir)
 }
