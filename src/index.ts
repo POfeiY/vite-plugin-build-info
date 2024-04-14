@@ -2,7 +2,7 @@
  * @description 应用构建信息打印（应用字段+git字段）
  */
 
-import type { IndexHtmlTransformResult, Plugin, UserConfig } from 'vite'
+import type { IndexHtmlTransformResult, Plugin } from 'vite'
 
 import type { Build_Info_To_Html } from './types'
 import { getAppInfo, getGitInfo } from './utils'
@@ -10,7 +10,7 @@ import { getAppInfo, getGitInfo } from './utils'
 // 全局信息
 const GlobalConf = `window__APP_CONFIG__`
 
-export default (options?: UserConfig & Build_Info_To_Html): Plugin => {
+export default (options?: Build_Info_To_Html): Plugin => {
   // let commandType: 'serve' | 'build'
   const { showBuildUser = true, enableGloabl = false, enableLog = true, enableMeta = true } = options || {}
   return {
