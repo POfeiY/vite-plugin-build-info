@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-build-info-to-html",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0-beta.0",
   "packageManager": "pnpm@8.15.3",
   "description": "create console for build info",
   "author": "POfeiY <yuzili4109@gmail.com>",
@@ -42,6 +42,7 @@
   ],
   "scripts": {
     "build": "unbuild",
+    "tsup": "tsup src/index.ts --dts --format cjs,esm",
     "dev": "unbuild --stub",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
@@ -63,6 +64,7 @@
     "pnpm": "^8.15.3",
     "rimraf": "^5.0.5",
     "simple-git-hooks": "^2.9.0",
+    "tsup": "^8.0.2",
     "typescript": "^5.3.3",
     "unbuild": "^2.0.0",
     "vite": "^5.1.4",
