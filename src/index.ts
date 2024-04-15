@@ -1,9 +1,4 @@
-/**
- * @description 应用构建信息打印（应用字段+git字段）
- */
-
 import type { IndexHtmlTransformResult, Plugin } from 'vite'
-
 import type { Build_Info_To_Html } from './types'
 import { getAppInfo, getGitInfo } from './utils'
 

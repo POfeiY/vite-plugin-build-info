@@ -7,12 +7,12 @@
   "author": "POfeiY <yuzili4109@gmail.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/antfu/vite-plugin-build-info-to-html#readme",
+  "homepage": "https://github.com/antfu/vite-plugin-build-info#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antfu/vite-plugin-build-info-to-html.git"
+    "url": "git+https://github.com/antfu/vite-plugin-build-info.git"
   },
-  "bugs": "https://github.com/antfu/vite-plugin-build-info-to-html/issues",
+  "bugs": "https://github.com/antfu/vite-plugin-build-info/issues",
   "keywords": [
     "vite",
     "H5",
@@ -42,7 +42,6 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "tsup": "tsup src/index.ts --dts --format cjs,esm",
     "dev": "unbuild --stub",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
