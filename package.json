@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-build-info-to-html",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1-beta.0",
   "packageManager": "pnpm@8.15.3",
   "description": "create console for build info",
   "author": "POfeiY <yuzili4109@gmail.com>",
