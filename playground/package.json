@@ -24,6 +24,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.2.2",
     "vite": "^5.2.8",
-    "vite-plugin-build-info-to-html": "workspace:0.1.1-beta.4"
+    "vite-plugin-build-info-to-html": "workspace:0.1.1-beta.4",
+    "vite-plugin-support-file-protocol": "1.0.3-beta.2"
   }
 }
