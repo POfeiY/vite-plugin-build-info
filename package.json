@@ -6,12 +6,12 @@
   "description": "create console for build info",
   "author": "POfeiY <yuzili4109@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/antfu/vite-plugin-build-info#readme",
+  "homepage": "https://github.com/POfeiY/vite-plugin-build-info#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antfu/vite-plugin-build-info.git"
+    "url": "git+https://github.com/POfeiY/vite-plugin-build-info.git"
   },
-  "bugs": "https://github.com/antfu/vite-plugin-build-info/issues",
+  "bugs": "https://github.com/POfeiY/vite-plugin-build-info/issues",
   "keywords": [
     "vite",
     "H5",
