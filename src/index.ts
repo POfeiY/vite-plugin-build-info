@@ -3,10 +3,9 @@ import type { Build_Info_To_Html } from './types'
 import { getAppInfo, getGitInfo } from './utils'
 
 // 全局信息
-const GlobalConf = `window__APP_CONFIG__`
+const GlobalConf = `__APP_CONFIG__`
 
-export default (options?: Build_Info_To_Html): Plugin => {
-  // let commandType: 'serve' | 'build'
+export default function BuildInfoToHtml(options?: Build_Info_To_Html): Plugin {
   const { showBuildUser = true, enableGloabl = false, enableLog = true, enableMeta = true } = options || {}
   return {
     name: 'vite-plugin-build-info-to-html',
@@ -38,12 +37,18 @@ export default (options?: Build_Info_To_Html): Plugin => {
           attrs: { name: 'app-info', content: appInfoString },
         })
       }
-      // log TODO: format
       if (enableLog) {
         extraInfos.push({
           tag: 'script',
           injectTo: 'body',
-          children: `console.log(${appInfoString})`,
+          children: `
+          console.log(
+            '%c ${appInfo.name} %c Detected ${appInfo.version} %c',
+            'background:#3F485A ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+            'background:#1B55FF ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+            'background:transparent'
+          );
+          console.log(${appInfoString});`,
         })
       }
       if (enableGloabl) {
