@@ -6,7 +6,6 @@
   "description": "create console for build info",
   "author": "POfeiY <yuzili4109@gmail.com>",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
   "homepage": "https://github.com/antfu/vite-plugin-build-info#readme",
   "repository": {
     "type": "git",
