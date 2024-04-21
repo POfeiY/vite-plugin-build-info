@@ -9,6 +9,7 @@ export default function BuildInfoToHtml(options?: Build_Info_To_Html): Plugin {
   const { showBuildUser = true, enableGloabl = false, enableLog = true, enableMeta = true } = options || {}
   return {
     name: 'vite-plugin-build-info-to-html',
+    apply: 'build',
     async transformIndexHtml() {
       const extraInfos: IndexHtmlTransformResult = []
       const appInfo = getAppInfo()
